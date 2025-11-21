@@ -6,7 +6,7 @@ class Error(Exception):
     pass
 
 def calculate(a,b,op):
-    ops = ["+","-","/","*"]
+    ops = ["+","-","/","*","^"]
     if not op in ops:
         raise Error("Недопустимая операция!")
     if op == "+":
@@ -20,6 +20,9 @@ def calculate(a,b,op):
             return a + b
     elif op == "*":
         return a * b
+    elif op == "^":
+        return a**b
+    
 def clear():
     if name == "nt":
         system("cls")
@@ -33,11 +36,14 @@ while True:
     try:
         a = float(input(f"{title}"
         "Добро пожаловать в калькулятор!\n"
-        "Допустимые операции: / * + -\n"
+        "Допустимые операции: / * + - ^\n"
         "Введите первое число: "))
     except Error as e:
         print("Должно быть число!")
         time.sleep(3)
+    clear()
+
+    op = input(f"{title}Введите желаемую операцию: ")
     clear()
 
     try:
@@ -48,13 +54,12 @@ while True:
         print("Должно быть число!")
         time.sleep(3)
 
-    op = input(f"{title}Введите желаемую операцию: ")
-    clear()
+    
 
     try:
         print(title)
         print(f"\033[32m{calculate(a,b,op)}\033[m")
-        time.sleep(5)
+        time.sleep(4)
     except Error as e:
         print("\033[031mОшибка:",e,"\033[m")
-        time.sleep(5)
+        time.sleep(4)
